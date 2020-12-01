@@ -1,0 +1,25 @@
+rule
+{
+  id "Porque nao funcionas"
+  for data
+  filter
+  {
+    type name
+    name /example
+    relation is-prefix-of
+  }
+  checker
+  {
+      type hierarchical                  ; the certificate name of the signing key and
+                                            ; the data name must follow the hierarchical model
+         sig-type rsa-sha256                ; data must have a rsa-sha256 signature
+  }
+}
+
+trust-anchor
+{
+  type dir
+  dir /usr/local/etc/ndn/keys
+  refresh 1h 
+}
+
